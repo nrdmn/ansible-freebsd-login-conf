@@ -1,0 +1,50 @@
+---
+
+freebsd_login_conf_defaults:
+  default:
+    passwd_format: sha512
+    copyright: /etc/COPYRIGHT
+    welcome: /etc/motd
+    setenv: MAIL=/var/mail/$,BLOCKSIZE=K
+    path: /sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin ~/bin
+    nologin: /var/run/nologin
+    cputime: unlimited
+    datasize: unlimited
+    stacksize: unlimited
+    memorylocked: 64K
+    memoryuse: unlimited
+    filesize: unlimited
+    coredumpsize: unlimited
+    openfiles: unlimited
+    maxproc: unlimited
+    sbsize: unlimited
+    vmemoryuse: unlimited
+    swapuse: unlimited
+    pseudoterminals: unlimited
+    kqueues: unlimited
+    umtxp: unlimited
+    priority: 0
+    ignoretime@: true
+    umask: 022
+  standard:
+    tc: default
+  xuser:
+    tc: default
+  staff:
+    tc: default
+  daemon:
+    memorylocked: 128M
+    tc: default
+  news:
+    tc: default
+  dialer:
+    tc: default
+  root:
+    ignorenologin: true
+    memorylocked: unlimited
+    tc: default
+  russian:
+    description: Russian Users Accounts
+    charset: UTF-8
+    lang: ru_RU.UTF-8
+    tc: default

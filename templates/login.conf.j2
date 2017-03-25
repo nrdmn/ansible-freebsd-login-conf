@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+{% for name, item in freebsd_login_conf.iteritems() %}
+{{ name }}{% if 'aliases' in item %}{% for alias in item['aliases'] %}|{{ alias }}{% endfor %}{% endif %}{% if 'description' in item %}|{{ item['description'] }}{% endif %}:{% for key, value in item.iteritems() %}{% if key != 'aliases' and key != 'description' %}\
+	:{{ key|regex_replace (':','\\\\c') }}={{ value|regex_replace (':','\\\\c') }}:{% endif %}{% endfor %}
+
+
+{% endfor %}

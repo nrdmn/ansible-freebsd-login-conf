@@ -1,0 +1,4 @@
+---
+
+- name: Rebuild login class capabilities database
+  command: '/usr/bin/cap_mkdb /etc/login.conf'

@@ -1,0 +1,20 @@
+---
+
+- name: OS is supported
+  assert:
+    that: ansible_distribution == 'FreeBSD'
+
+- name: Load default options
+  include_vars: 'freebsd-{{ ansible_distribution_major_version }}.yml'
+  when: 'freebsd_login_conf_skip_defaults == false'
+
+- name: Combine options
+  set_fact:
+    freebsd_login_conf: '{{ freebsd_login_conf_defaults|combine(freebsd_login_conf, recursive=True) }}'
+  when: 'freebsd_login_conf_skip_defaults == false'
+
+- name: Apply login.conf configuration
+  template:
+    src: login.conf.j2
+    dest: '/etc/login.conf'
+  notify: [ 'Rebuild login class capabilities database' ]
